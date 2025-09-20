@@ -1,3 +1,4 @@
+import 'package:bank/components/customTopBar.dart';
 import 'package:bank/global.dart';
 import 'package:flutter/material.dart';
 
@@ -136,13 +137,16 @@ class _PasscodeState extends State<Passcode> {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          gradient: Global.gray1, // aqui sim podes usar o LinearGradient
+          gradient: Global.gray1, // linearGradient
         ),
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const SizedBox(height: 40),
+              // 🔹 Chamar a TopBar
+              const CustomTopBar(),
+              // Espaço para alinhar o título ao centro
+              const SizedBox(width: 48),
               const Text(
                 "Enter Passcode",
                 style: TextStyle(
