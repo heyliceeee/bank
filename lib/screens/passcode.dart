@@ -1,4 +1,4 @@
-import 'package:bank/components/customTopBar.dart';
+import 'package:bank/components/topbarPasscode.dart';
 import 'package:bank/global.dart';
 import 'package:flutter/material.dart';
 
@@ -37,11 +37,13 @@ class _PasscodeState extends State<Passcode> {
     if (_enteredCode == _correctCode) {
       Navigator.pushReplacementNamed(context, '/home');
     } else {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text("Código incorreto")));
-      setState(() {
-        _enteredCode = "";
+      // Espera 300ms para mostrar as 4 bolas antes de limpar
+      Future.delayed(const Duration(milliseconds: 300), () {
+        if (mounted) {
+          setState(() {
+            _enteredCode = "";
+          });
+        }
       });
     }
   }
@@ -144,7 +146,7 @@ class _PasscodeState extends State<Passcode> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // 🔹 Chamar a TopBar
-              const CustomTopBar(),
+              const TopbarPasscode(),
               // Espaço para alinhar o título ao centro
               const SizedBox(width: 48),
               const Text(

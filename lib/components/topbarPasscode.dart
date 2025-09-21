@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class CustomTopBar extends StatelessWidget {
-  const CustomTopBar({super.key});
+class TopbarPasscode extends StatelessWidget {
+  const TopbarPasscode({super.key});
 
   @override
   Widget build(BuildContext context) {
