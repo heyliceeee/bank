@@ -1,27 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class CustomTopBar extends StatelessWidget {
-  final VoidCallback? onMenuTap;
-
-  const CustomTopBar({super.key, this.onMenuTap});
+  const CustomTopBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 56,
       padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // 🔹 Logo LouBank
-          Row(children: [Image.asset('assets/logo.png', height: 18)]),
-
-          // 🔹 Botão de menu (três pontos verticais)
-          IconButton(
-            icon: const Icon(Icons.more_vert, color: Colors.white),
-            onPressed: onMenuTap ?? () {},
-          ),
-        ],
+      child: Center(
+        child: SvgPicture.asset(
+          'assets/logo.svg',
+          height: 21,
+          fit: BoxFit.contain,
+        ),
       ),
     );
   }
