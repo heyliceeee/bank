@@ -6,6 +6,7 @@ import 'package:bank/screens/message/message.dart';
 import 'package:bank/screens/shoppingBag/shoppingBag.dart';
 import 'package:bank/screens/time/time.dart';
 import 'package:flutter/material.dart';
+import 'package:remixicon_updated/remixicon_updated.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -30,36 +31,36 @@ class _HomeState extends State<HomeScreen> {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: SingleChildScrollView(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment:
-                          CrossAxisAlignment.end, // 🔹 alinha pelo fundo
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Coluna com os dois textos
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                        // Linha de cima: textos à esquerda + botão à direita
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text(
-                              "Your balance",
-                              style: Global.regularLengthBody.copyWith(
-                                color: Colors.white,
-                                fontSize: 15,
-                              ),
+                            // Coluna com os dois textos
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Your balance",
+                                  style: Global.regularLengthBody.copyWith(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                const SizedBox(height: 6),
+                                Text(
+                                  "\$ 7,896",
+                                  style: Global.boldLengthHealdine.copyWith(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
                             ),
-                            const SizedBox(height: 6),
-                            Text(
-                              "\$ 7,896",
-                              style: Global.boldLengthHealdine.copyWith(
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
 
-                        // Coluna só com o botão, alinhado em baixo
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
+                            // Botão redondo
                             Container(
                               width: 32,
                               height: 32,
@@ -71,7 +72,7 @@ class _HomeState extends State<HomeScreen> {
                                 padding: EdgeInsets.zero,
                                 iconSize: 16,
                                 icon: const Icon(
-                                  Icons.search,
+                                  Remix.search_line,
                                   color: Colors.white,
                                 ),
                                 onPressed: () {
@@ -80,6 +81,36 @@ class _HomeState extends State<HomeScreen> {
                               ),
                             ),
                           ],
+                        ),
+
+                        const SizedBox(
+                          height: 20,
+                        ), // espaço entre a linha de cima e o texto de baixo
+                        // lista de cartões com scroll horizontal
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              _buildInfoBox(
+                                "Salary",
+                                "\$ 2,230",
+                                "** 6917",
+                                Global.gradientMint,
+                              ),
+                              _buildInfoBox(
+                                "Savings account",
+                                "\$ 5,566",
+                                "** 4552",
+                                Global.gradientYellow,
+                              ),
+                              _buildInfoBox(
+                                "Salary",
+                                "\$ 2,230",
+                                "** 6917",
+                                Global.gradientGrey,
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -118,6 +149,70 @@ class _HomeState extends State<HomeScreen> {
             MaterialPageRoute(builder: (_) => page),
           );
         },
+      ),
+    );
+  }
+
+  // Função para criar cada container
+  Widget _buildInfoBox(
+    String typeCard,
+    String amount,
+    String cardID,
+    LinearGradient color,
+  ) {
+    return Container(
+      width: 148, // 🔹 controla a largura do container
+      height: 170, // 🔹 controla a altura do container
+      margin: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        gradient: color,
+        borderRadius: BorderRadius.circular(25),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.2), // cor da sombra
+            spreadRadius: 0, // espalhamento
+            blurRadius: 8, // suavidade
+            offset: const Offset(0, 4), // desloca só para baixo
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start, // 🔹 alinha à esquerda
+        children: [
+          const SizedBox(height: 8),
+
+          // Linha 1: imagem
+          Icon(Remix.visa_line, color: Color(0xFF272A32), size: 35),
+
+          const SizedBox(height: 25),
+
+          // Linha 2: typeCard
+          Text(
+            typeCard,
+            style: Global.mediumCaption.copyWith(
+              color: Color(0xFF272A32),
+              fontSize: 11,
+            ),
+          ),
+
+          const SizedBox(height: 0),
+
+          // Linha 3: amount
+          Text(amount, style: Global.boldLengthBody.copyWith(fontSize: 17)),
+
+          const SizedBox(height: 25),
+
+          // Linha 4: cardID
+          Text(
+            cardID,
+            style: Global.mediumCaption.copyWith(
+              color: Color(0xFF272A32),
+              fontSize: 11,
+            ),
+          ),
+        ],
       ),
     );
   }
