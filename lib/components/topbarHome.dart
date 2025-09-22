@@ -1,3 +1,4 @@
+import 'package:bank/global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -21,7 +22,7 @@ class TopbarHome extends StatelessWidget {
               onTap: onIconTap ?? () {},
               child: const CircleAvatar(
                 radius: 16, // metade de 32
-                backgroundColor: Color(0xFF363339), // cor de fundo
+                backgroundColor: Global.yellowAccent, // cor de fundo
                 backgroundImage: AssetImage('assets/profile.jpeg'),
               ),
             ),

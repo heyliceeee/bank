@@ -27,10 +27,62 @@ class _HomeState extends State<HomeScreen> {
             children: [
               const TopbarHome(),
               Expanded(
-                child: Center(
-                  child: Text(
-                    "Mostra saldo total, vários cartões VISA, botões rápidos (“Send / Receive / Top up / More”), promoções (“Start investing now!”) e lista de transações recentes.",
-                    style: TextStyle(color: Colors.white),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: SingleChildScrollView(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment:
+                          CrossAxisAlignment.end, // 🔹 alinha pelo fundo
+                      children: [
+                        // Coluna com os dois textos
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Your balance",
+                              style: Global.regularLengthBody.copyWith(
+                                color: Colors.white,
+                                fontSize: 15,
+                              ),
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              "\$ 7,896",
+                              style: Global.boldLengthHealdine.copyWith(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        // Coluna só com o botão, alinhado em baixo
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              width: 32,
+                              height: 32,
+                              decoration: const BoxDecoration(
+                                color: Color(0xFF3E3E3E),
+                                shape: BoxShape.circle,
+                              ),
+                              child: IconButton(
+                                padding: EdgeInsets.zero,
+                                iconSize: 16,
+                                icon: const Icon(
+                                  Icons.search,
+                                  color: Colors.white,
+                                ),
+                                onPressed: () {
+                                  // ação ao clicar no botão
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -84,21 +84,18 @@ class _PasscodeState extends State<Passcode> {
           children: [
             Text(
               number,
-              style: const TextStyle(
+              style: Global.regularLengthBody.copyWith(
                 fontSize: 36,
-                height: 1.4,
-                fontWeight: FontWeight.w400,
                 color: Colors.white,
               ),
             ),
+
             if (letters != null)
               Text(
                 letters,
-                style: const TextStyle(
+                style: Global.mediumLengthBody.copyWith(
                   fontSize: 10,
                   color: Colors.white,
-                  height: 1.4,
-                  fontWeight: FontWeight.w500,
                 ),
               ),
           ],
@@ -119,12 +116,12 @@ class _PasscodeState extends State<Passcode> {
           children: [
             // Ícone de backspace em cinza
             Icon(Icons.backspace, size: 28, color: Color(0xFF363339)),
+
             // Apenas o "X" — usando um texto ou ícone custom
-            const Text(
+            Text(
               " X",
-              style: TextStyle(
+              style: Global.boldLengthBody.copyWith(
                 fontSize: 16,
-                fontWeight: FontWeight.bold,
                 color: Colors.white, // só o X é branco
               ),
             ),
@@ -149,15 +146,14 @@ class _PasscodeState extends State<Passcode> {
               const TopbarPasscode(),
               // Espaço para alinhar o título ao centro
               const SizedBox(width: 48),
-              const Text(
+              Text(
                 "Enter Passcode",
-                style: TextStyle(
+                style: Global.regularLengthBody.copyWith(
+                  color: const Color(0xFFFFFFFF),
                   fontSize: 17,
-                  fontWeight: FontWeight.w400,
-                  height: 1.4,
-                  color: Color(0xFFFFFFFF),
                 ),
               ),
+
               _buildDots(),
               Column(
                 children: [
@@ -204,12 +200,10 @@ class _PasscodeState extends State<Passcode> {
                   onPressed: () {
                     // ação para "Can not login?"
                   },
-                  child: const Text(
+                  child: Text(
                     "Can not login?",
-                    style: TextStyle(
+                    style: Global.regularLengthBody.copyWith(
                       fontSize: 13,
-                      fontWeight: FontWeight.w400,
-                      height: 1.4,
                       color: Global.yellowAccent,
                     ),
                   ),
