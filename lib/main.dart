@@ -1,4 +1,4 @@
-import 'package:bank/screens/home.dart';
+import 'package:bank/screens/home/home.dart';
 import 'package:bank/screens/passcode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -50,7 +50,7 @@ class MyApp extends StatelessWidget {
       */
         routes: {
           '/': (context) => const Passcode(),
-          '/home': (context) => const Home(),
+          '/home': (context) => const HomeScreen(),
         },
       ),
     );

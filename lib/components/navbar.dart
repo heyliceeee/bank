@@ -22,11 +22,11 @@ class Navbar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _navItem(Remix.home_4_line, 0),
-          _navItem(Remix.shopping_bag_line, 1),
-          _navItem(Remix.bank_card_line, 2),
-          _navItem(Remix.message_3_line, 3),
-          _navItem(Remix.time_line, 4),
+          _navItem(Remix.home_4_line, 0), // Home / Dashboard
+          _navItem(Remix.shopping_bag_line, 1), // Orçamento / Compras
+          _navItem(Remix.bank_card_line, 2), // Cartões
+          _navItem(Remix.message_3_line, 3), // Mensagens
+          _navItem(Remix.time_line, 4), // Histórico / Agendamentos
         ],
       ),
     );
