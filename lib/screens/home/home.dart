@@ -96,6 +96,7 @@ class _HomeState extends State<HomeScreen> {
                                 "\$ 2,230",
                                 "** 6917",
                                 Global.gradientMint,
+                                removeLeftMargin: true,
                               ),
                               _buildInfoBox(
                                 "Savings account",
@@ -108,6 +109,7 @@ class _HomeState extends State<HomeScreen> {
                                 "\$ 2,230",
                                 "** 6917",
                                 Global.gradientGrey,
+                                removeRightMargin: true,
                               ),
                             ],
                           ),
@@ -158,12 +160,22 @@ class _HomeState extends State<HomeScreen> {
     String typeCard,
     String amount,
     String cardID,
-    LinearGradient color,
-  ) {
+    LinearGradient color, {
+    bool removeLeftMargin = false,
+    bool removeRightMargin = false,
+  }) {
+    EdgeInsets margin;
+    if (removeLeftMargin) {
+      margin = const EdgeInsets.only(right: 8);
+    } else if (removeRightMargin) {
+      margin = const EdgeInsets.only(left: 8);
+    } else {
+      margin = const EdgeInsets.symmetric(horizontal: 8);
+    }
     return Container(
       width: 148, // 🔹 controla a largura do container
       height: 170, // 🔹 controla a altura do container
-      margin: const EdgeInsets.symmetric(horizontal: 8),
+      margin: margin,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         gradient: color,
