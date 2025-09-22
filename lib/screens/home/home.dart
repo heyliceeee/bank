@@ -114,6 +114,20 @@ class _HomeState extends State<HomeScreen> {
                             ],
                           ),
                         ),
+
+                        const SizedBox(height: 20),
+
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "FINANCE",
+                              style: Global.medium1Caption.copyWith(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        ),
                       ],
                     ),
                   ),

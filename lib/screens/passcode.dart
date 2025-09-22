@@ -78,6 +78,13 @@ class _PasscodeState extends State<Passcode> {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: Color(0xFF363339),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.2),
+              blurRadius: 12,
+              offset: Offset(0, 6), // sombra para baixo
+            ),
+          ],
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
