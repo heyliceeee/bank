@@ -19,7 +19,7 @@ class _HomeState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent, // 🔹 transparente
+      backgroundColor: Color(0xFF1E1E1E), // 🔹 transparente
       extendBody: true, // 🔹 deixa o body “passar” por baixo do navbar
       body: Container(
         decoration: const BoxDecoration(gradient: Global.gray1),
@@ -83,28 +83,27 @@ class _HomeState extends State<HomeScreen> {
                           ],
                         ),
 
-                        const SizedBox(
-                          height: 20,
-                        ), // espaço entre a linha de cima e o texto de baixo
+                        const SizedBox(height: 30),
+
                         // lista de cartões com scroll horizontal
                         SingleChildScrollView(
                           scrollDirection: Axis.horizontal,
                           child: Row(
                             children: [
-                              _buildInfoBox(
+                              _buildCardBox(
                                 "Salary",
                                 "\$ 2,230",
                                 "** 6917",
                                 Global.gradientMint,
                                 removeLeftMargin: true,
                               ),
-                              _buildInfoBox(
+                              _buildCardBox(
                                 "Savings account",
                                 "\$ 5,566",
                                 "** 4552",
                                 Global.gradientYellow,
                               ),
-                              _buildInfoBox(
+                              _buildCardBox(
                                 "Salary",
                                 "\$ 2,230",
                                 "** 6917",
@@ -115,8 +114,9 @@ class _HomeState extends State<HomeScreen> {
                           ),
                         ),
 
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 30),
 
+                        // linha com o texto "FINANCE"
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -128,6 +128,43 @@ class _HomeState extends State<HomeScreen> {
                             ),
                           ],
                         ),
+
+                        const SizedBox(height: 5),
+
+                        // lista de opções: my bonuses, my budgets, finance analysis, ...
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              _buildFinanceBox(
+                                "My bonuses",
+                                Remix.star_line,
+                                Global.yellowAccent,
+                                removeLeftMargin: true,
+                              ),
+                              _buildFinanceBox(
+                                "My budget",
+                                Remix.wallet_3_line,
+                                Global.mint,
+                              ),
+                              _buildFinanceBox(
+                                "Finance analysis",
+                                Remix.bar_chart_box_line,
+                                Global.purple,
+                                removeRightMargin: true,
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        const SizedBox(height: 30),
+
+                        // container cinza mais claro que o fundo
+                        // dropdown menu: current loans
+                        // 2 itens do dropdown
+
+                        // dropdown menu: currencies and metals
+                        // 2 itens do dropdown
                       ],
                     ),
                   ),
@@ -169,8 +206,8 @@ class _HomeState extends State<HomeScreen> {
     );
   }
 
-  // Função para criar cada container
-  Widget _buildInfoBox(
+  // Função para criar cada container de cartão
+  Widget _buildCardBox(
     String typeCard,
     String amount,
     String cardID,
@@ -217,10 +254,7 @@ class _HomeState extends State<HomeScreen> {
           // Linha 2: typeCard
           Text(
             typeCard,
-            style: Global.mediumCaption.copyWith(
-              color: Color(0xFF272A32),
-              fontSize: 11,
-            ),
+            style: Global.mediumCaption.copyWith(color: Color(0xFF272A32)),
           ),
 
           const SizedBox(height: 0),
@@ -233,10 +267,85 @@ class _HomeState extends State<HomeScreen> {
           // Linha 4: cardID
           Text(
             cardID,
-            style: Global.mediumCaption.copyWith(
-              color: Color(0xFF272A32),
-              fontSize: 11,
+            style: Global.mediumCaption.copyWith(color: Color(0xFF272A32)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Funcao para criar cada container de finance
+  Widget _buildFinanceBox(
+    String text,
+    IconData? icon,
+    Color color, {
+    bool removeLeftMargin = false,
+    bool removeRightMargin = false,
+  }) {
+    EdgeInsets margin;
+    if (removeLeftMargin) {
+      margin = const EdgeInsets.only(right: 8);
+    } else if (removeRightMargin) {
+      margin = const EdgeInsets.only(left: 8);
+    } else {
+      margin = const EdgeInsets.symmetric(horizontal: 8);
+    }
+
+    return Container(
+      width: 100, // 🔹 controla a largura do container
+      height: 100, // 🔹 controla a altura do container
+      margin: margin,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Color(0xFF252626),
+        borderRadius: BorderRadius.circular(25),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.2), // cor da sombra
+            spreadRadius: 0, // espalhamento
+            blurRadius: 8, // suavidade
+            offset: const Offset(0, 4), // desloca só para baixo
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start, // 🔹 alinha à esquerda
+        children: [
+          const SizedBox(height: 7),
+
+          // Linha 1: botao com o ícone
+          Container(
+            width: 32,
+            height: 32,
+            decoration: BoxDecoration(
+              color: color,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.2), // cor da sombra
+                  spreadRadius: 0, // espalhamento
+                  blurRadius: 8, // suavidade
+                  offset: const Offset(0, 4), // desloca só para baixo
+                ),
+              ],
             ),
+            child: IconButton(
+              padding: EdgeInsets.zero,
+              iconSize: 16,
+              icon: Icon(icon, color: Color(0xFF252626)),
+              onPressed: () {
+                // ação ao clicar no botão
+              },
+            ),
+          ),
+
+          const SizedBox(height: 15),
+
+          // Linha 2: texto
+          Text(
+            text,
+            style: Global.mediumCaption.copyWith(color: Color(0xFFFFFFFF)),
           ),
         ],
       ),
