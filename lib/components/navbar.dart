@@ -11,7 +11,7 @@ class Navbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 70,
+      height: 83,
       decoration: const BoxDecoration(
         color: Color(0x991E1E1E), // preto mais claro arredondado
         borderRadius: BorderRadius.only(

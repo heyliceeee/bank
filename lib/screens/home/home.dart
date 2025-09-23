@@ -59,7 +59,6 @@ class _HomeState extends State<HomeScreen> {
                                 ),
                               ],
                             ),
-
                             // Botão redondo
                             Container(
                               width: 32,
@@ -160,11 +159,122 @@ class _HomeState extends State<HomeScreen> {
                         const SizedBox(height: 30),
 
                         // container cinza mais claro que o fundo
-                        // dropdown menu: current loans
-                        // 2 itens do dropdown
+                        Expanded(
+                          child: Container(
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFF252626),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(25),
+                                topRight: Radius.circular(25),
+                                bottomLeft: Radius.circular(25),
+                                bottomRight: Radius.circular(25),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                top: 8.0,
+                                left: 12.0,
+                                right: 12.0,
+                              ),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    // accordion menu: current loans
+                                    Theme(
+                                      data: Theme.of(context).copyWith(
+                                        dividerColor: Colors.transparent,
+                                      ),
+                                      child: ExpansionTile(
+                                        title: Text(
+                                          'CURRENT LOANS',
+                                          style: Global.mediumCaption.copyWith(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        collapsedIconColor: Colors.white,
+                                        iconColor: Colors.white,
+                                        children: [
+                                          ListTile(
+                                            visualDensity:
+                                                VisualDensity.compact,
+                                            minVerticalPadding: 0,
+                                            contentPadding: EdgeInsets.zero,
+                                            title: Text(
+                                              'Item 1',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                          ListTile(
+                                            visualDensity:
+                                                VisualDensity.compact,
+                                            minVerticalPadding: 0,
+                                            contentPadding: EdgeInsets.zero,
+                                            title: Text(
+                                              'Item 2',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                        backgroundColor: Colors.transparent,
+                                      ),
+                                    ),
 
-                        // dropdown menu: currencies and metals
-                        // 2 itens do dropdown
+                                    // accordion menu: currencies and metals
+                                    Theme(
+                                      data: Theme.of(context).copyWith(
+                                        dividerColor: Colors.transparent,
+                                      ),
+                                      child: ExpansionTile(
+                                        title: Text(
+                                          'CURRENCIES AND METALS',
+                                          style: Global.mediumCaption.copyWith(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        collapsedIconColor: Colors.white,
+                                        iconColor: Colors.white,
+                                        children: [
+                                          ListTile(
+                                            visualDensity:
+                                                VisualDensity.compact,
+                                            minVerticalPadding: 0,
+                                            contentPadding: EdgeInsets.zero,
+                                            title: Text(
+                                              'Item 1',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                          ListTile(
+                                            visualDensity:
+                                                VisualDensity.compact,
+                                            minVerticalPadding: 0,
+                                            contentPadding: EdgeInsets.zero,
+                                            title: Text(
+                                              'Item 2',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                        backgroundColor: Colors.transparent,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
