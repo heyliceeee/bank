@@ -7,10 +7,8 @@ void main() {
   runApp(const MyApp());
 }
 
-/**
- * Classe `MyApp` representa o widget raiz do app.
- * Configura o tema e as rotas principais utilizadas no bank.
-*/
+/// Classe `MyApp` representa o widget raiz do app.
+/// Configura o tema e as rotas principais utilizadas no bank.
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

@@ -99,6 +99,7 @@ class Global {
 
   static const Color gray2 = Color(0xFF212121); // #212121 100% opacidade
   static const Color gray3 = Color(0xFF79767D); // #79767D 100% opacidade
+  static const Color gray270 = Color(0xB2212121); // #212121 70% opacidade
 
   // styles | cores | gradient
   static const Color mintStart = Color(0xFFEAEAEA); // #EAEAEA 100% opacidade

@@ -202,23 +202,40 @@ class _HomeState extends State<HomeScreen> {
                                                 VisualDensity.compact,
                                             minVerticalPadding: 0,
                                             contentPadding: EdgeInsets.zero,
-                                            title: Text(
-                                              'Item 1',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                              ),
+                                            title: _buildCurrentLoansBox(
+                                              Global.gray270,
+                                              Remix.bank_card_line,
+                                              Global.mint,
+                                              "Account № 3874825",
+                                              "Expires 12/22/2023",
+                                              Colors.white,
+                                              Global.gray3,
+                                              "\$ 78,92",
+                                              "Rate 3.5%",
+                                              removeRightMargin: false,
+                                              removeLeftMargin: true,
                                             ),
                                           ),
+
+                                          const SizedBox(height: 5),
+
                                           ListTile(
                                             visualDensity:
                                                 VisualDensity.compact,
                                             minVerticalPadding: 0,
                                             contentPadding: EdgeInsets.zero,
-                                            title: Text(
-                                              'Item 2',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                              ),
+                                            title: _buildCurrentLoansBox(
+                                              Global.mint,
+                                              Remix.flashlight_line,
+                                              Global.yellowAccent,
+                                              "Start investing now!",
+                                              "Protected savings and investment plans",
+                                              Color(0xFF262626),
+                                              Color(0xFF262626),
+                                              "X",
+                                              "",
+                                              removeRightMargin: false,
+                                              removeLeftMargin: true,
                                             ),
                                           ),
                                         ],
@@ -456,6 +473,131 @@ class _HomeState extends State<HomeScreen> {
           Text(
             text,
             style: Global.mediumCaption.copyWith(color: Color(0xFFFFFFFF)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Funcao para criar cada container de current loans
+  Widget _buildCurrentLoansBox(
+    Color backgroundColor,
+    IconData? icon,
+    Color iconBackgroundColor,
+    String title,
+    String subtitle,
+    Color colorTitle,
+    Color colorSubtitle,
+    String price,
+    String rate, {
+    bool removeLeftMargin = false,
+    bool removeRightMargin = false,
+  }) {
+    EdgeInsets margin;
+    if (removeLeftMargin) {
+      margin = const EdgeInsets.only(right: 8);
+    } else if (removeRightMargin) {
+      margin = const EdgeInsets.only(left: 8);
+    } else {
+      margin = const EdgeInsets.symmetric(horizontal: 8);
+    }
+
+    return Container(
+      height: 76, // 🔹 controla a altura do container
+      margin: margin,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(25),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.2), // cor da sombra
+            spreadRadius: 0, // espalhamento
+            blurRadius: 8, // suavidade
+            offset: const Offset(0, 4), // desloca só para baixo
+          ),
+        ],
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Coluna 1: Icon Button
+          Container(
+            width: 32,
+            height: 32,
+            decoration: BoxDecoration(
+              color: iconBackgroundColor,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withValues(alpha: 0.2), // cor da sombra
+                  spreadRadius: 0, // espalhamento
+                  blurRadius: 8, // suavidade
+                  offset: const Offset(0, 4), // desloca só para baixo
+                ),
+              ],
+            ),
+            child: IconButton(
+              padding: EdgeInsets.zero,
+              iconSize: 16,
+              icon: Icon(icon, color: Color(0xFF252626)),
+              onPressed: () {
+                // ação ao clicar no botão
+              },
+            ),
+          ),
+
+          const SizedBox(width: 12),
+
+          // Coluna 2: Title e Subtitle
+          Expanded(
+            flex: 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  title,
+                  style:
+                      (title == "Start investing now!"
+                              ? Global.semiboldLengthBody
+                              : Global.regular2LengthBody)
+                          .copyWith(color: colorTitle),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  subtitle,
+                  style: Global.regular1Caption.copyWith(color: colorSubtitle),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(width: 12),
+
+          // Coluna 3: Price e Rate
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: price == "X"
+                ? MainAxisAlignment.start
+                : MainAxisAlignment.center,
+            children: [
+              Text(
+                price,
+                style: price == "X"
+                    ? Global.boldLengthBody.copyWith(color: colorTitle)
+                    : Global.regular2LengthBody.copyWith(color: colorTitle),
+                overflow: TextOverflow.ellipsis,
+              ),
+              if (rate.isNotEmpty)
+                Text(
+                  rate,
+                  style: Global.regular1Caption.copyWith(color: colorSubtitle),
+                  overflow: TextOverflow.ellipsis,
+                ),
+            ],
           ),
         ],
       ),
