@@ -1,5 +1,6 @@
 import 'package:bank/components/navbar.dart';
 import 'package:bank/components/topbarHome.dart';
+import 'package:bank/components/topbarMyBudget.dart';
 import 'package:bank/global.dart';
 import 'package:bank/screens/bankCard/bankCard.dart';
 import 'package:bank/screens/home/home.dart';
@@ -25,13 +26,11 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              const TopbarHome(),
+              const TopbarMyBudget(),
               Expanded(
-                child: Center(
-                  child: Text(
-                    "Ecrãs com categorias de despesa (“Health”, “Shopping”, “Transport”), gráficos de gastos e valores por categoria.",
-                    style: TextStyle(color: Colors.white),
-                  ),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: SingleChildScrollView(),
                 ),
               ),
             ],
