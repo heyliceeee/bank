@@ -263,23 +263,40 @@ class _HomeState extends State<HomeScreen> {
                                                 VisualDensity.compact,
                                             minVerticalPadding: 0,
                                             contentPadding: EdgeInsets.zero,
-                                            title: Text(
-                                              'Item 1',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                              ),
+                                            title: _buildCurrenciesMetalsBox(
+                                              Remix.money_dollar_circle_line,
+                                              Remix.money_euro_circle_line,
+                                              "Currencie",
+                                              "\$ 78,92",
+                                              "\$ 78,92",
+                                              "USD",
+                                              "EUR",
+                                              "\$ 78,92",
+                                              "\$ 78,92",
+                                              removeRightMargin: false,
+                                              removeLeftMargin: true,
                                             ),
                                           ),
+
+                                          const SizedBox(height: 5),
+
                                           ListTile(
                                             visualDensity:
                                                 VisualDensity.compact,
                                             minVerticalPadding: 0,
                                             contentPadding: EdgeInsets.zero,
-                                            title: Text(
-                                              'Item 2',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                              ),
+                                            title: _buildCurrenciesMetalsBox(
+                                              Remix.coins_fill,
+                                              Remix.coins_fill,
+                                              "Metals",
+                                              "\$ 78,92",
+                                              "\$ 78,92",
+                                              "Gold",
+                                              "Silver",
+                                              "\$ 78,92",
+                                              "\$ 78,92",
+                                              removeRightMargin: false,
+                                              removeLeftMargin: true,
                                             ),
                                           ),
                                         ],
@@ -467,7 +484,7 @@ class _HomeState extends State<HomeScreen> {
             ),
           ),
 
-          const SizedBox(height: 15),
+          const SizedBox(height: 13),
 
           // Linha 2: texto
           Text(
@@ -597,6 +614,206 @@ class _HomeState extends State<HomeScreen> {
                   style: Global.regular1Caption.copyWith(color: colorSubtitle),
                   overflow: TextOverflow.ellipsis,
                 ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Funcao para criar cada container de currencies and metals
+  Widget _buildCurrenciesMetalsBox(
+    IconData? icon1,
+    IconData? icon2,
+    String firstCollumnName,
+    String buy1,
+    String buy2,
+    String firstCollumnName1,
+    String firstCollumnName2,
+    String sell1,
+    String sell2, {
+    bool removeLeftMargin = false,
+    bool removeRightMargin = false,
+  }) {
+    EdgeInsets margin;
+    if (removeLeftMargin) {
+      margin = const EdgeInsets.only(right: 8);
+    } else if (removeRightMargin) {
+      margin = const EdgeInsets.only(left: 8);
+    } else {
+      margin = const EdgeInsets.symmetric(horizontal: 8);
+    }
+
+    return Container(
+      height: 116, // 🔹 controla a altura do container
+      margin: margin,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Global.gray270,
+        borderRadius: BorderRadius.circular(25),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.2), // cor da sombra
+            spreadRadius: 0, // espalhamento
+            blurRadius: 8, // suavidade
+            offset: const Offset(0, 4), // desloca só para baixo
+          ),
+        ],
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Coluna 1: Currencie ou Metal
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                firstCollumnName,
+                style: Global.regular1Caption.copyWith(color: Global.gray3),
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 13),
+              // Agrupa cada ícone e nome em uma linha, na mesma coluna
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        width: 20,
+                        height: 20,
+                        decoration: BoxDecoration(
+                          color: Global.mint,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.2),
+                              spreadRadius: 0,
+                              blurRadius: 8,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: IconButton(
+                          padding: EdgeInsets.zero,
+                          iconSize: 12,
+                          icon: Icon(icon1, color: Color(0xFF000000)),
+                          onPressed: () {},
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        firstCollumnName1,
+                        style: Global.regular2LengthBody.copyWith(
+                          color: Colors.white,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    children: [
+                      Container(
+                        width: 20,
+                        height: 20,
+                        decoration: BoxDecoration(
+                          color: Global.mint,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.2),
+                              spreadRadius: 0,
+                              blurRadius: 8,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: IconButton(
+                          padding: EdgeInsets.zero,
+                          iconSize: 12,
+                          icon: Icon(icon2, color: Color(0xFF000000)),
+                          onPressed: () {},
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        firstCollumnName2,
+                        style: Global.regular2LengthBody.copyWith(
+                          color: Colors.white,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+
+          const SizedBox(width: 10),
+
+          // Coluna 2: Buy
+          Expanded(
+            flex: 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Buy",
+                  style: Global.regular1Caption.copyWith(color: Global.gray3),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 13),
+                Text(
+                  buy1,
+                  style: Global.regular2LengthBody.copyWith(
+                    color: Color(0xFFFFFFFF),
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  buy2,
+                  style: Global.regular2LengthBody.copyWith(
+                    color: Color(0xFFFFFFFF),
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(width: 10),
+
+          // Coluna 3: Sell
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Sell",
+                style: Global.regular1Caption.copyWith(color: Global.gray3),
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 13),
+              Text(
+                sell1,
+                style: Global.regular2LengthBody.copyWith(
+                  color: Color(0xFFFFFFFF),
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                sell2,
+                style: Global.regular2LengthBody.copyWith(
+                  color: Color(0xFFFFFFFF),
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
             ],
           ),
         ],
