@@ -270,7 +270,7 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
                                     const SizedBox(height: 15),
 
                                     _buildTransitionsBox(
-                                      "assets/webflow.png",
+                                      "webflow.png",
                                       "Webflow",
                                       "Outcoming transfer",
                                       "- \$45",
@@ -278,7 +278,7 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
                                       removeRightMargin: false,
                                     ),
                                     _buildTransitionsBox(
-                                      "assets/sketch.png",
+                                      "sketch.png",
                                       "Sketch",
                                       "Annual withdrawal of funds",
                                       "- \$79",
@@ -286,7 +286,7 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
                                       removeRightMargin: false,
                                     ),
                                     _buildTransitionsBox(
-                                      "assets/youtube.png",
+                                      "youtube.png",
                                       "YouTube",
                                       "Annual withdrawal of funds",
                                       "- \$15",
@@ -294,10 +294,19 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
                                       removeRightMargin: false,
                                     ),
                                     _buildTransitionsBox(
-                                      "assets/unsplash.png",
+                                      "unsplash.png",
                                       "Unsplash",
                                       "Outcoming transfer",
                                       "- \$9",
+                                      removeLeftMargin: false,
+                                      removeRightMargin: false,
+                                    ),
+
+                                    _buildTransitionsBox(
+                                      "spotify.webp",
+                                      "Spotify",
+                                      "Annual withdrawal of funds",
+                                      "- \$11",
                                       removeLeftMargin: false,
                                       removeRightMargin: false,
                                     ),
@@ -380,7 +389,8 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
             height: 32,
             child: CircleAvatar(
               radius: 16, // metade de 32
-              backgroundImage: AssetImage(image),
+              backgroundColor: Colors.white, // cor de fundo
+              backgroundImage: AssetImage("assets/$image"),
             ),
           ),
 

@@ -64,6 +64,11 @@ flutter:
   assets:
     - assets/logo.svg
     - assets/profile.jpeg
+    - assets/sketch.png
+    - assets/unsplash.png
+    - assets/youtube.png
+    - assets/webflow.png
+    - assets/spotify.webp
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
