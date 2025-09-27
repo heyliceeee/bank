@@ -19,7 +19,7 @@ class _HomeState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF1E1E1E), // 🔹 transparente
+      backgroundColor: Color(0xFF1E1E1E),
       extendBody: true, // 🔹 deixa o body “passar” por baixo do navbar
       body: Container(
         decoration: const BoxDecoration(gradient: Global.gray1),

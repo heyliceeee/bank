@@ -19,7 +19,7 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent, // 🔹 transparente
+      backgroundColor: Color(0xFF1E1E1E),
       extendBody: true, // 🔹 deixa o body “passar” por baixo do navbar
       body: Container(
         decoration: const BoxDecoration(gradient: Global.gray1),
@@ -82,7 +82,7 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "June, 2020",
+                                    "June, 2025",
                                     style: Global.regular1Caption.copyWith(
                                       color: Colors.white,
                                     ),
@@ -94,7 +94,7 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
                           ),
                         ),
 
-                        const SizedBox(height: 2),
+                        const SizedBox(height: 10),
 
                         // Gráfico de linhas
                         Container(
@@ -125,7 +125,8 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
                                       return Text(
                                         text,
                                         style: Global.regular1Caption.copyWith(
-                                          color: Colors.white,
+                                          fontSize: 13,
+                                          color: Global.mint,
                                         ),
                                       );
                                     },
@@ -146,35 +147,70 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
                               lineBarsData: [
                                 LineChartBarData(
                                   spots: [
-                                    FlSpot(0, 1600),
-                                    FlSpot(1, 1800),
+                                    FlSpot(0, 1400),
+                                    FlSpot(1, 1200),
                                     FlSpot(2, 1345),
-                                    FlSpot(3, 1900),
-                                    FlSpot(4, 1700),
-                                    FlSpot(5, 2000),
+                                    FlSpot(3, 1100),
+                                    FlSpot(4, 1500),
+                                    FlSpot(5, 1300),
                                   ],
                                   isCurved: true,
                                   color: Global.mint,
                                   barWidth: 3,
-                                  dotData: FlDotData(show: false),
+                                  // Mostra o dot apenas no terceiro ponto
+                                  dotData: FlDotData(
+                                    show: true,
+                                    checkToShowDot: (spot, barData) =>
+                                        spot.x == 2,
+                                    getDotPainter:
+                                        (spot, percent, barData, index) =>
+                                            FlDotCirclePainter(
+                                              radius: 6,
+                                              color: Global.mint,
+                                              strokeWidth: 0,
+                                            ),
+                                  ),
                                   showingIndicators: [
                                     2,
                                   ], // Mostra o popup do terceiro ponto (índice 2)
+                                  // Adiciona linhas verticais tracejadas do eixo até cada ponto
+                                  belowBarData: BarAreaData(
+                                    show: true,
+                                    spotsLine: BarAreaSpotsLine(
+                                      show: true,
+                                      flLineStyle: FlLine(
+                                        color: Global.mint.withOpacity(0.5),
+                                        strokeWidth: 2,
+                                        dashArray: [6, 6],
+                                      ),
+                                      checkToShowSpotLine: (spot) =>
+                                          true, // linha tracejada para todos os pontos
+                                    ),
+                                    gradient: LinearGradient(
+                                      colors: [
+                                        Colors.transparent,
+                                        Colors.transparent,
+                                      ],
+                                    ),
+                                  ),
                                 ),
                               ],
+
                               lineTouchData: LineTouchData(
                                 enabled: true,
                                 getTouchedSpotIndicator:
-                                    (barData, spotIndexes) =>
-                                        spotIndexes.map((index) {
-                                          return TouchedSpotIndicatorData(
-                                            FlLine(
-                                              color: Global.mint,
-                                              strokeWidth: 2,
-                                            ),
-                                            FlDotData(show: true),
-                                          );
-                                        }).toList(),
+                                    (barData, spotIndexes) => spotIndexes.map((
+                                      index,
+                                    ) {
+                                      // Retorna apenas o dot, sem linha vertical
+                                      return TouchedSpotIndicatorData(
+                                        FlLine(
+                                          color: Colors.transparent,
+                                          strokeWidth: 0,
+                                        ),
+                                        FlDotData(show: true),
+                                      );
+                                    }).toList(),
                                 touchTooltipData: LineTouchTooltipData(
                                   tooltipBgColor: Colors.black87,
                                   getTooltipItems: (touchedSpots) {
@@ -192,6 +228,81 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
                                 // Para mostrar o tooltip por padrão, use initialSelection
                                 // (disponível nas versões recentes do fl_chart)
                                 // initialSelection: const FlTouchInput(data: FlSpot(2, 1345)),
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        const SizedBox(height: 10),
+
+                        // Histórico de transações
+                        Expanded(
+                          child: Container(
+                            width: double.infinity,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFF252626),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(25),
+                                topRight: Radius.circular(25),
+                                bottomLeft: Radius.circular(25),
+                                bottomRight: Radius.circular(25),
+                              ),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                top: 8.0,
+                                left: 12.0,
+                                right: 12.0,
+                              ),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  children: [
+                                    const SizedBox(height: 15),
+
+                                    Text(
+                                      'June 15, 2025',
+                                      style: Global.semiboldLengthHealdine
+                                          .copyWith(color: Colors.white),
+                                    ),
+
+                                    const SizedBox(height: 15),
+
+                                    _buildTransitionsBox(
+                                      "assets/webflow.png",
+                                      "Webflow",
+                                      "Outcoming transfer",
+                                      "- \$45",
+                                      removeLeftMargin: false,
+                                      removeRightMargin: false,
+                                    ),
+                                    _buildTransitionsBox(
+                                      "assets/sketch.png",
+                                      "Sketch",
+                                      "Annual withdrawal of funds",
+                                      "- \$79",
+                                      removeLeftMargin: false,
+                                      removeRightMargin: false,
+                                    ),
+                                    _buildTransitionsBox(
+                                      "assets/youtube.png",
+                                      "YouTube",
+                                      "Annual withdrawal of funds",
+                                      "- \$15",
+                                      removeLeftMargin: false,
+                                      removeRightMargin: false,
+                                    ),
+                                    _buildTransitionsBox(
+                                      "assets/unsplash.png",
+                                      "Unsplash",
+                                      "Outcoming transfer",
+                                      "- \$9",
+                                      removeLeftMargin: false,
+                                      removeRightMargin: false,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
@@ -233,6 +344,84 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
             MaterialPageRoute(builder: (_) => page),
           );
         },
+      ),
+    );
+  }
+
+  // Funcao para criar cada item de transação
+  Widget _buildTransitionsBox(
+    String image,
+    String title,
+    String subtitle,
+    String price, {
+    bool removeLeftMargin = false,
+    bool removeRightMargin = false,
+  }) {
+    EdgeInsets margin;
+    if (removeLeftMargin) {
+      margin = const EdgeInsets.only(right: 8);
+    } else if (removeRightMargin) {
+      margin = const EdgeInsets.only(left: 8);
+    } else {
+      margin = const EdgeInsets.symmetric(horizontal: 8);
+    }
+
+    return Container(
+      height: 60, // 🔹 controla a altura do container
+      margin: margin,
+      padding: const EdgeInsets.all(0),
+      decoration: BoxDecoration(color: Colors.transparent),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Coluna 1: circle avatar
+          Container(
+            width: 32,
+            height: 32,
+            child: CircleAvatar(
+              radius: 16, // metade de 32
+              backgroundImage: AssetImage(image),
+            ),
+          ),
+
+          const SizedBox(width: 12),
+
+          // Coluna 2: título e subtítulo
+          Expanded(
+            flex: 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  title,
+                  style: Global.mediumLengthBody.copyWith(color: Colors.white),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  subtitle,
+                  style: Global.regular1Caption.copyWith(color: Global.gray3),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+
+          const SizedBox(width: 12),
+
+          // Coluna 3: preço
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                price,
+                style: Global.mediumLengthBody.copyWith(color: Colors.white),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
