@@ -32,7 +32,7 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
                   padding: const EdgeInsets.all(16.0),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
-                    child: // Substitua o Row por uma Column para colocar o gráfico na linha seguinte ao card:
+                    child: // Column para colocar o gráfico na linha seguinte ao card:
                     Column(
                       children: [
                         // Card de orçamento
@@ -411,7 +411,7 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
                 const SizedBox(height: 2),
                 Text(
                   subtitle,
-                  style: Global.regular1Caption.copyWith(color: Global.gray3),
+                  style: Global.regularCaption.copyWith(color: Global.gray3),
                   overflow: TextOverflow.ellipsis,
                 ),
               ],
