@@ -1,6 +1,6 @@
 # Bank App
 
-Este projeto é uma app Flutter para a gestao bancária, com visual moderno e navegação intuitiva.
+Este projeto é uma app Flutter para a gestão bancária, com visual moderno e navegação intuitiva.
 
 ## Funcionalidades
 
