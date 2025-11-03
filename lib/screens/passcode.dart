@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class Passcode extends StatefulWidget {
   /// Construtor padrão para a `Passcode`.
-  const Passcode({Key? key}) : super(key: key);
+  const Passcode({super.key});
 
   @override
   _PasscodeState createState() => _PasscodeState();

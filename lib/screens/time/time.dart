@@ -8,7 +8,7 @@ import 'package:bank/screens/shoppingBag/shoppingBag.dart';
 import 'package:flutter/material.dart';
 
 class TimeScreen extends StatefulWidget {
-  const TimeScreen({Key? key}) : super(key: key);
+  const TimeScreen({super.key});
 
   @override
   _TimeState createState() => _TimeState();

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:remixicon_updated/remixicon_updated.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   _HomeState createState() => _HomeState();
@@ -196,6 +196,7 @@ class _HomeState extends State<HomeScreen> {
                                         ),
                                         collapsedIconColor: Colors.white,
                                         iconColor: Colors.white,
+                                        backgroundColor: Colors.transparent,
                                         children: [
                                           ListTile(
                                             visualDensity:
@@ -239,7 +240,6 @@ class _HomeState extends State<HomeScreen> {
                                             ),
                                           ),
                                         ],
-                                        backgroundColor: Colors.transparent,
                                       ),
                                     ),
 
@@ -257,6 +257,7 @@ class _HomeState extends State<HomeScreen> {
                                         ),
                                         collapsedIconColor: Colors.white,
                                         iconColor: Colors.white,
+                                        backgroundColor: Colors.transparent,
                                         children: [
                                           ListTile(
                                             visualDensity:
@@ -300,7 +301,6 @@ class _HomeState extends State<HomeScreen> {
                                             ),
                                           ),
                                         ],
-                                        backgroundColor: Colors.transparent,
                                       ),
                                     ),
                                   ],

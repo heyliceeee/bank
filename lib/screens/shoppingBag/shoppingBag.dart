@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class ShoppingBagScreen extends StatefulWidget {
-  const ShoppingBagScreen({Key? key}) : super(key: key);
+  const ShoppingBagScreen({super.key});
 
   @override
   _ShoppingBagState createState() => _ShoppingBagState();
@@ -32,7 +32,7 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
                   padding: const EdgeInsets.all(16.0),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
-                    child: // Substitua o Row por uma Column para colocar o gráfico na linha seguinte ao card:
+                    child: // Column para colocar o gráfico na linha seguinte ao card:
                     Column(
                       children: [
                         // Card de orçamento
@@ -384,7 +384,7 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Coluna 1: circle avatar
-          Container(
+          SizedBox(
             width: 32,
             height: 32,
             child: CircleAvatar(
@@ -411,7 +411,7 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
                 const SizedBox(height: 2),
                 Text(
                   subtitle,
-                  style: Global.regular1Caption.copyWith(color: Global.gray3),
+                  style: Global.regularCaption.copyWith(color: Global.gray3),
                   overflow: TextOverflow.ellipsis,
                 ),
               ],
