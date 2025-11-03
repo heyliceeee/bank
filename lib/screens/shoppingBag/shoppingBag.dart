@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 
 class ShoppingBagScreen extends StatefulWidget {
-  const ShoppingBagScreen({Key? key}) : super(key: key);
+  const ShoppingBagScreen({super.key});
 
   @override
   _ShoppingBagState createState() => _ShoppingBagState();
@@ -384,7 +384,7 @@ class _ShoppingBagState extends State<ShoppingBagScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Coluna 1: circle avatar
-          Container(
+          SizedBox(
             width: 32,
             height: 32,
             child: CircleAvatar(

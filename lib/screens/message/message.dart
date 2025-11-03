@@ -8,7 +8,7 @@ import 'package:bank/screens/time/time.dart';
 import 'package:flutter/material.dart';
 
 class MessageScreen extends StatefulWidget {
-  const MessageScreen({Key? key}) : super(key: key);
+  const MessageScreen({super.key});
 
   @override
   _MessageState createState() => _MessageState();

@@ -10,13 +10,15 @@ import 'package:flutter/material.dart';
 import 'package:remixicon_updated/remixicon_updated.dart';
 
 class BankCardScreen extends StatefulWidget {
-  const BankCardScreen({Key? key}) : super(key: key);
+  const BankCardScreen({super.key});
 
   @override
   _BankCardState createState() => _BankCardState();
 }
 
 class _BankCardState extends State<BankCardScreen> {
+  int _currentPage = 0; // Track the current page in the slider
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,11 +35,59 @@ class _BankCardState extends State<BankCardScreen> {
                   padding: const EdgeInsets.all(16.0),
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
-                    child: // Slider de cartoes
-                    Column(
+                    child: Column(
                       children: [
-                        // Slider ou cartao (ainda nao sei)
-                        Container(),
+                        // Slider de cartoes (widget em formato de cartao)
+                        SizedBox(
+                          height: 200, // Define the height of the slider
+                          child: PageView(
+                            scrollDirection: Axis.horizontal,
+                            onPageChanged: (index) {
+                              setState(() {
+                                _currentPage = index; // Update the current page
+                              });
+                            },
+                            children: [
+                              _buildBankCard(
+                                Global.gradientMint,
+                                "**** 1234",
+                                "\$5,000",
+                              ),
+                              _buildBankCard(
+                                Global.gradientYellow,
+                                "**** 5678",
+                                "\$3,200",
+                              ),
+                              _buildBankCard(
+                                Global.gradientGrey,
+                                "**** 9101",
+                                "\$7,800",
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        // Dots indicator
+                        const SizedBox(height: 12),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(3, (index) {
+                            return AnimatedContainer(
+                              duration: const Duration(milliseconds: 300),
+                              margin: const EdgeInsets.symmetric(horizontal: 4),
+                              width: _currentPage == index ? 12 : 8,
+                              height: 8,
+                              decoration: BoxDecoration(
+                                color: _currentPage == index
+                                    ? _getCardBackgroundColor(
+                                        index,
+                                      ) // Use card background color
+                                    : Colors.grey,
+                                borderRadius: BorderRadius.circular(4),
+                              ),
+                            );
+                          }),
+                        ),
 
                         const SizedBox(height: 20),
 
@@ -216,7 +266,7 @@ class _BankCardState extends State<BankCardScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           // Coluna 1: circle avatar
-          Container(
+          SizedBox(
             width: 32,
             height: 32,
             child: CircleAvatar(
@@ -266,5 +316,107 @@ class _BankCardState extends State<BankCardScreen> {
         ],
       ),
     );
+  }
+
+  // Helper function to build a bank card widget
+  Widget _buildBankCard(
+    LinearGradient backgroundColor,
+    String cardNumber,
+    String balance,
+  ) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        gradient: backgroundColor,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            blurRadius: 8,
+            offset: Offset(0, 4),
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          // First line: VISA icon
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Icon(Remix.visa_line, color: Color(0xFF272A32), size: 47),
+              Text(
+                "\$ 5,566.55",
+                style: Global.boldLengthBody.copyWith(fontSize: 20),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          // Second line: Chip image
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Image.asset(
+                'assets/chip.png', // Path to the chip image
+                width: 27,
+                height: 27,
+              ),
+            ],
+          ),
+          const SizedBox(height: 0),
+
+          // Third line: "VALID THRU"
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                "VALID THRU",
+                style: Global.medium1Caption.copyWith(color: Color(0xFF272A32)),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          // Fourth line: Card number and expiration date
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                cardNumber,
+                style: Global.boldLengthBody.copyWith(fontSize: 15),
+              ),
+              Text(
+                "12/22",
+                style: Global.boldLengthBody.copyWith(fontSize: 15),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          // Fifth line: Cardholder name
+          Text(
+            "ALICE DIAS",
+            style: Global.medium1Caption.copyWith(color: Color(0xFF272A32)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // Helper function to get the background color of the current card
+  Color _getCardBackgroundColor(int index) {
+    switch (index) {
+      case 0:
+        return Global.mint; // First color of the gradient
+      case 1:
+        return Global.yellowAccent;
+      case 2:
+        return Global.greyEnd;
+      default:
+        return Colors.grey; // Fallback color
+    }
   }
 }

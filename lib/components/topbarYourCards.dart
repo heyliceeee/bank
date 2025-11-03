@@ -1,6 +1,5 @@
 import 'package:bank/global.dart';
 import 'package:flutter/material.dart';
-import 'package:remixicon_updated/remixicon_updated.dart';
 
 class TopbarYourCards extends StatelessWidget {
   final VoidCallback? onIconTap;
